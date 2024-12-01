@@ -11,5 +11,6 @@ body {
 }
 form {
     margin-top: auto; /* Pushes the form to the bottom */
-    padding: 30px;
+    padding: 30px; 
+    background-color: #f8f9fa;
 }
