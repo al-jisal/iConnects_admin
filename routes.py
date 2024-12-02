@@ -1,2 +1,0 @@
-def routes():
-    pass
