@@ -5,3 +5,4 @@ openai==1.54.3
 python-dotenv==0.20.0
 SQLAlchemy==2.0.36
 Werkzeug==2.2.2
+flask-migrate==4.0.7
