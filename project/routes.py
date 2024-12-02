@@ -8,4 +8,4 @@ def home():
 
 @main_blueprint.route('/submit_query', methods=['GET', 'POST'])
 def submit_query():
-    pass
+    return "Query Submited Successfully"
