@@ -1,7 +1,7 @@
 Flask==2.2.2
 Flask-SQLAlchemy==3.0.2
 Jinja2==3.1.4
-openai==1.54.3
+openai==0.28
 python-dotenv==0.20.0
 SQLAlchemy==2.0.36
 Werkzeug==2.2.2
