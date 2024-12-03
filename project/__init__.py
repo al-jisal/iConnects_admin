@@ -18,7 +18,14 @@ def create_app():
     # creates the tables
     with app.app_context():
         from project.models import Student, Alum, Post
+        from project.data import students_data, alumni_data, posts_data
         db.create_all()
+
+        # loads the data into the database
+        db.session.bulk_insert_mappings(Student, students_data)
+        db.session.bulk_insert_mappings(Alum, alumni_data)
+        db.session.bulk_insert_mappings(Post, posts_data)
+        db.session.commit()
 
     # registers the blueprint
     from project import routes
