@@ -15,15 +15,21 @@ from sqlalchemy.sql import text
 
 def generate_models_context():
     """
-    Dynamically generate a summary of all SQLAlchemy models, their columns, and all rows of data.
+    Generate a summary of all SQLAlchemy models, their columns, relationships, and all rows of data.
     """
     models_context = "You are working with the following SQLAlchemy models and data:\n\n"
 
     for table_name, table in db.Model.metadata.tables.items():
         models_context += f"Model '{table_name}':\n"
- 
+
         for column in table.columns:
             models_context += f" - {column.name} ({str(column.type)})\n"
+
+        relationships = [rel.key for rel in getattr(db.Model._decl_class_registry.get(table_name, None), '__mapper__', {}).relationships]
+        if relationships:
+            models_context += "Relationships:\n"
+            for relationship in relationships:
+                models_context += f"   - {relationship}\n"
 
         query = text(f"SELECT * FROM {table_name}")
         result = db.session.execute(query)
@@ -35,9 +41,9 @@ def generate_models_context():
                 models_context += f"   {dict(row)}\n"
         else:
             models_context += "No data available.\n"
-        
+
         models_context += "\n"
-    
+
     return models_context
 
 
